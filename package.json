@@ -1,0 +1,14 @@
+{
+  "name": "wdio5-draft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@applitools/eyes-webdriverio": "^5.2.0"
+  }
+}
