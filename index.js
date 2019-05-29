@@ -21,9 +21,11 @@ async function main() {
     // await browser.url('https://applitools.com/helloworld');
     await browser.url('http://applitools.github.io/demo/TestPages/FramesTestPage/');
 
-    await eyes.check('strictRegions', Target.window().strictRegions(new Region(50, 50 , 100, 100)));
+    await eyes.check('strictRegions', Target.window().strictRegions(By.id("overflowing-div")));
 
-    await eyes.check('layoutRegions', Target.window().layoutRegions(new Region(250, 250 , 100, 100)));
+    await eyes.check('layoutRegions', Target.window().layoutRegions(By.id('overflowing-div-image')));
+
+    await eyes.check('contentRegions', Target.window().contentRegions(By.id('overflowing-div-image')));
 
     await eyes.close(false);
 
