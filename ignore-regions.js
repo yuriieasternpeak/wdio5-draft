@@ -7,6 +7,12 @@ async function main() {
     remoteHost: "http://localhost:4444",
     capabilities: {
       browserName: 'chrome',
+      'goog:chromeOptions': {
+        args: [
+          '--disable-infobars',
+          'headless'
+        ]
+      }
     }
   };
   const browser = await webdriverio.remote(browserOptions);
@@ -16,16 +22,18 @@ async function main() {
   eyes.setApiKey(process.env.APPLITOOLS_API_KEY);
 
   try {
-    await eyes.open(browser, 'Strict/layout', 'test', {width: 800, height: 600});
+    await eyes.open(browser, 'Ignore regions', 'ignore-regions', {width: 800, height: 600});
 
     // await browser.url('https://applitools.com/helloworld');
-    await browser.url('http://applitools.github.io/demo/TestPages/FramesTestPage/');
+    await browser.url('https://cloudinary.com/users/login');
 
-    await eyes.check('strictRegions', Target.window().strictRegions(By.id("overflowing-div")));
+    await eyes.check("Window - ignore by ID", Target.window().ignore(By.id('user_session_email')));
 
-    await eyes.check('layoutRegions', Target.window().layoutRegions(By.id('overflowing-div-image')));
+    await eyes.check("Window - ignore by cssSelector", Target.window().ignore(By.css('#user_session_email')));
 
-    await eyes.check('contentRegions', Target.window().contentRegions(By.id('overflowing-div-image')));
+    await eyes.check("Window - ignoreRegion by ID", Target.window().ignore(By.id('user_session_email')));
+
+    await eyes.check("Window - layoutRegion by ID", Target.window().layoutRegions(By.id('user_session_email')));
 
     await eyes.close(false);
 
