@@ -33,7 +33,9 @@ async function main() {
 
     await eyes.check("Window - ignoreRegion by ID", Target.window().ignore(By.id('user_session_email')));
 
-    await eyes.check("Window - layoutRegion by ID", Target.window().layoutRegions(By.id('user_session_email')));
+    await eyes.check("Window - layoutRegions by ID", Target.window().layoutRegions(By.id('user_session_email')));
+
+    await eyes.check("Window - layoutRegions by xPath", Target.window().layoutRegions(By.xPath('//*[@id="user_session_email"]')));
 
     await eyes.close(false);
 
